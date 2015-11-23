@@ -1,6 +1,9 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var taskListing = require('gulp-task-listing');
+
+gulp.task("help",taskListing);
 
 gulp.task('default', ['html', 'sass', 'javascript', 'images', 'lib']);
 
