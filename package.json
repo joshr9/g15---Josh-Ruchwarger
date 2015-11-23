@@ -1,0 +1,27 @@
+{
+  "name": "front_end_project",
+  "version": "1.0.0",
+  "description": "front end project",
+  "main": "script.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshr9/g15---Josh-Ruchwarger.git"
+  },
+  "author": "Josh Ruchwarger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshr9/g15---Josh-Ruchwarger/issues"
+  },
+  "homepage": "https://github.com/joshr9/g15---Josh-Ruchwarger#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "chai": "^3.4.1",
+    "firebase": "^2.3.2",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
+    "tools": "0.0.0"
+  }
+}
