@@ -9,18 +9,35 @@
       <h1>hello</h1>
     </main>
     <form class="form-container" onsubmit="return false;">
-      <input class="player_name" type="text" placeholder="first and last name" min="12" max="120">
+      <input class="player_name" id="player1" type="text" placeholder="first and last name" min="12" max="120">
       <div>
-        <button type="button">Search</button>
+        <button type="button" id="player1btn">Search</button>
       </div>
     </form>
 
-    <div class="stats">
+    <form class="form-container" onsubmit="return false;">
+      <input class="player_name"  id="player2" type="text" placeholder="first and last name" min="12" max="120">
+      <div>
+        <button type="button" id="player2btn">Search</button>
+      </div>
+    </form>
 
-    </div>
-    <div class="shotChart"></div>
 
+
+
+    <div class="stats-p1"></div>
+    <div class="stats-p2"></div>
+
+    <script id="playerStats" type="text/x-handlebars-template">
+      <div>
+        {{0.game_id}}
+      </div>
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="script.js"></script>
+
   </body>
 </html>
