@@ -96,16 +96,16 @@ function getStats(player) {
     var source = $("#playerStats").html();
     var template = Handlebars.compile(source);
     var context = {
-      api: d,
-      AvgAssist: avgAssist,
-      AvgBlock: avgBlock,
-      AvgfgAttempts: avgfgAttempts,
-      AvgfgMade: avgfgMade,
-      AvgthreeAttempts: avgthreeAttempts,
-      AvgthreeMade: avgthreeMade,
-      AvgftAttempts: avgftAttempts,
-      AvgftMade: avgftMade,
-      AvgPoints: avgPoints
+      //api: d,
+      AvgAssist: avgAssist.toFixed(2),
+      AvgBlock: avgBlock.toFixed(2),
+      AvgfgAttempts: avgfgAttempts.toFixed(2),
+      AvgfgMade: avgfgMade.toFixed(2),
+      AvgthreeAttempts: avgthreeAttempts.toFixed(2),
+      AvgthreeMade: avgthreeMade.toFixed(2),
+      AvgftAttempts: avgftAttempts.toFixed(2),
+      AvgftMade: avgftMade.toFixed(2),
+      AvgPoints: avgPoints.toFixed(2)
     };
 
     var html = template(context);
