@@ -40,13 +40,6 @@ function getPlayer(first, last){
 
 }
 
-// function shotChart(player) {
-//   $.post($url_playerBox + '?api_key=' + $api_key + '&player_id=' + JSON.parse(player)[0].player_id, function(d){
-//     console.log(d);
-//
-//   });
-// }
-
 function getStats(player) {
   console.log(JSON.parse(player));
   $.post($url_playerBox + '?api_key=' + $api_key +  '&player_id=' + JSON.parse(player)[0].player_id + '&season=2015', function(d){
@@ -86,7 +79,6 @@ function getStats(player) {
     var avgftAttempts = ftAttempt / d.length;
     var avgftMade = ftMade / d.length;
     var avgPoints = points / d.length;
-    // var avgMinutes = minutes / d.length;
 
     console.log(avgAssist);
     console.log(avgBlock);
@@ -97,14 +89,26 @@ function getStats(player) {
     console.log(avgftAttempts);
     console.log(avgftMade);
     console.log(avgPoints);
-    // console.log(avgMinutes);
 
 
     $('.stats').empty();
 
     var source = $("#playerStats").html();
     var template = Handlebars.compile(source);
-    var html = template(d);
+    var context = {
+      api: d,
+      AvgAssist: avgAssist,
+      AvgBlock: avgBlock,
+      AvgfgAttempts: avgfgAttempts,
+      AvgfgMade: avgfgMade,
+      AvgthreeAttempts: avgthreeAttempts,
+      AvgthreeMade: avgthreeMade,
+      AvgftAttempts: avgftAttempts,
+      AvgftMade: avgftMade,
+      AvgPoints: avgPoints
+    };
+
+    var html = template(context);
     console.log(html);
     $stats.append(html).hide().fadeIn(800);
 
