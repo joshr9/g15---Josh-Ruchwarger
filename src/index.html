@@ -1,55 +1,156 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>NBA Stats</title>
-  </head>
-  <body>
-    <main>
-      <h1>hello</h1>
-    </main>
-    <form class="form-container" onsubmit="return false;">
-      <input class="player_name" id="player1" type="text" placeholder="first and last name" min="12" max="120">
-      <div>
-        <button type="button" id="player1btn">Search</button>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> NBA Stats Comparison </title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-xs-6">
+            <form class="form-container" onsubmit="return false;">
+              <div class="form-group">
+                <input class="player_name typeahead form-control" id="player1" type="text" placeholder="first and last name" min="12" max="120">
+              </div>
+              <div class="hidden">
+                <button type="button" class="btn btn-primary" id="player1btn">Search</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-xs-6">
+            <form class="form-container" onsubmit="return false;">
+              <div class="form-group">
+                <input class="player_name typeahead form-control" id="player2" type="text" placeholder="first and last name" min="12" max="120">
+              </div>
+              <div class="hidden">
+                <button type="button" class="btn btn-primary" id="player2btn">Search</button>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+
+        <div class="row text-center compare">
+          <button type="button" class="btn btn-primary" id="compare">Compare</button>
+        </div>
+        <div class="row">
+
+          <div class="col-xs-6">
+
+
+            <h1 id="name-p1"></h1>
+            <div id="stats-p1"></div>
+            <ul class="media-list" id="mentions-p1"></ul>
+          </div>
+
+          <div class="col-xs-6">
+
+
+            <h1 id="name-p2"></h1>
+            <div id="stats-p2"></div>
+
+            <ul class="media-list" id="mentions-p2"></ul>
+
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
 
-    <form class="form-container" onsubmit="return false;">
-      <input class="player_name"  id="player2" type="text" placeholder="first and last name" min="12" max="120">
-      <div>
-        <button type="button" id="player2btn">Search</button>
-      </div>
-    </form>
-
-
-
-
-    <div class="stats-p1"></div>
-    <div class="stats-p2"></div>
-
-    <script id="playerStats" type="text/x-handlebars-template">
-      <div>
-
-        <!-- {{api.0.game_id}} -->
-        Avg Assist: {{AvgAssist}}
-        Avg Blocks: {{AvgBlock}}
-        Avg Field Goal Attempts: {{AvgfgAttempts}}
-        Avg Field Goals Made: {{AvgfgMade}}
-        Avg Three Point Attempts: {{AvgthreeAttempts}}
-        Avg Three Point Made: {{AvgthreeMade}}
-        Avg Freethrows Attempts: {{AvgftAttempts}}
-        Avg Freethrows Made: {{AvgftMade}}
-        Avg Points: {{AvgPoints}}
-
-
-      </div>
+    <script id="playerMentions" type="text/x-handlebars-template">
+      <li class="media">
+        <div class="media-left">
+          <a href="#">
+            <img class="media-object" src="{{user.profile_image_url}}">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{user.name}}</h4>
+          {{text}}
+        </div>
+      </li>
     </script>
+    <script id="playerStats1" type="text/x-handlebars-template">
+
+      <div>
+        <dl>
+          <dt>Avg Points:</dt>
+          <dd id="AvgPoints-p1">{{AvgPoints}}</dd>
+          <dt>Avg Assist:</dt>
+          <dd id="AvgAssist-p1">{{AvgAssist}}</dd>
+          <dt>Avg Blocks:</dt>
+          <dd id="AvgBlock-p1">{{AvgBlock}}</dd>
+          <dt>Avg Field Goal Attempts:</dt>
+          <dd id="AvgfgAttempts-p1">{{AvgfgAttempts}}</dd>
+          <dt>Avg Field Goals Made:</dt>
+          <dd id="AvgfgMade-p1">{{AvgfgMade}}</dd>
+          <dt>Avg Three Point Attempts:</dt>
+          <dd id="AvgthreeAttempts-p1">{{AvgthreeAttempts}}</dd>
+          <dt>Avg Three Point Made:</dt>
+          <dd id="AvgthreeMade-p1">{{AvgthreeMade}}</dd>
+          <dt>Avg Freethrows Attempts:</dt>
+          <dd id="AvgftAttempts-p1">{{AvgftAttempts}}</dd>
+          <dt>Avg Freethrows Made:</dt>
+          <dd id="AvgftMade-p1">{{AvgftMade}}</dd>
+        </dl>
+      </div>
+</script>
+
+<script id="playerStats2" type="text/x-handlebars-template">
+
+  <div>
+    <dl>
+      <dt>Avg Points:</dt>
+      <dd id="AvgPoints-p2">{{AvgPoints}}</dd>
+      <dt>Avg Assist:</dt>
+      <dd id="AvgAssist-p2">{{AvgAssist}}</dd>
+      <dt>Avg Blocks:</dt>
+      <dd id="AvgBlock-p2">{{AvgBlock}}</dd>
+      <dt>Avg Field Goal Attempts:</dt>
+      <dd id="AvgfgAttempts-p2">{{AvgfgAttempts}}</dd>
+      <dt>Avg Field Goals Made:</dt>
+      <dd id="AvgfgMade-p2">{{AvgfgMade}}</dd>
+      <dt>Avg Three Point Attempts:</dt>
+      <dd id="AvgthreeAttempts-p2">{{AvgthreeAttempts}}</dd>
+      <dt>Avg Three Point Made:</dt>
+      <dd id="AvgthreeMade-p2">{{AvgthreeMade}}</dd>
+      <dt>Avg Freethrows Attempts:</dt>
+      <dd id="AvgftAttempts-p2">{{AvgftAttempts}}</dd>
+      <dt>Avg Freethrows Made:</dt>
+      <dd id="AvgftMade-p2">{{AvgftMade}}</dd>
+    </dl>
+  </div>
+</script>
 
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <script src="main.css"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="typeahead.bundle.min.js"></script>
+    <script src="codebird.js"></script>
     <script src="script.js"></script>
+</body>
 
-  </body>
 </html>

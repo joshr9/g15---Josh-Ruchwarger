@@ -5,7 +5,7 @@ var taskListing = require('gulp-task-listing');
 
 gulp.task("help",taskListing);
 
-gulp.task('default', ['html', 'sass', 'javascript', 'images', 'lib']);
+gulp.task('default', ['html', 'sass', 'javascript', 'images']);
 
 gulp.task('html', function () {
   return gulp.src('./src/**/*.html')
@@ -27,9 +27,5 @@ gulp.task('watch', ['default'], function(){
 });
 gulp.task('images', function () {
   return gulp.src('./src/**/*.png')
-    .pipe(gulp.dest('./build'));
-});
-gulp.task('lib', function () {
-  return gulp.src('./node_modules/codebird/codebird.js')
     .pipe(gulp.dest('./build'));
 });
