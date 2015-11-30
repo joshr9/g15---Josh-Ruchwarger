@@ -110,9 +110,9 @@ function betterStats(){
     var statName = statNames[i];
     if(comparePlayers["1"][statName] > comparePlayers["2"][statName]){
       console.log("player 1");
-      $("#" + statName + "-p1").css("color", "green");
+      $("#" + statName + "-p1").css("color", "#46C646");
     }else{
-      $("#" + statName + "-p2").css("color", "green");
+      $("#" + statName + "-p2").css("color", "#46C646");
       console.log("player 2");
 
     }
